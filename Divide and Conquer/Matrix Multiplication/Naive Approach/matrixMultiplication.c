@@ -41,7 +41,6 @@ void fill2dMatrix(int** X,int n){
             scanf("%d",&X[i][j]);
         }
     }
-
     print2dMatrix(X,n);
 }
 
