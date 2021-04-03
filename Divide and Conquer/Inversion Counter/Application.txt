@@ -1,0 +1,4 @@
+Inversion Counter is used by Amazon to recommend similar products purchased by other users.
+
+If there are no Inversions,then 100% similarity in product purchase.
+Else the number of inversions indicate the dissimilarity in purchase pattern.
