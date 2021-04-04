@@ -1,0 +1,15 @@
+*We can use BFS to identify the components of a graph
+*All nodes of a connected component are of equivlence class ie
+
+->they are symmetric because if there is a path from u to v,then
+there will be an path from v to u in undrected graph.
+->they are transitive because if there is a pth from u to v and v to node w,
+then there is a path from u to node w
+->They are reflexive because every node has a path to itself.
+
+*Uses:
+->Airtel would want to check if a particular "subnet" of a network is connected so that
+all nodes are reachable within it or not.
+->Find the number of "subnets" within the huge "network" of networks.
+->Set of closely related Objects can be clustered together Eg:closely related genome can be considwered as objects and theres an edge between them only f they are closely related.
+Such similar cluster of nodes can be grouped into components.
