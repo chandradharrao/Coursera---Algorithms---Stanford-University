@@ -29,8 +29,7 @@ int isEmpty(queue q){
 
 int dequeue(queue*q){
     printf("\nBefore Deletion :\n");
-    //printf("\nTop:%d Rear:%d Q[top]:%d\n",q->top,q->rear,(q->Q)[(q->top)]);
-    printf("\nTop:%d Rear:%d\n",q->top,q->rear);
+    printf("\nTop:%d Rear:%d Q[top]:%d\n",q->top,q->rear,(q->Q)[q->top]);
     //check for empty condition
     if((q->top == -1)){
         printf("\nQueue empty\n");
