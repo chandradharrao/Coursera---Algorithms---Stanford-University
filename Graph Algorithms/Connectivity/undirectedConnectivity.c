@@ -4,6 +4,7 @@
 #define True 1
 #define False 0
 
+//to count number of components
 int number_of_components = 0;
 
 typedef struct q
