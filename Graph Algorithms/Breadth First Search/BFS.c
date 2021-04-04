@@ -56,7 +56,7 @@ void enqueue(queue* q,int x){
         return;
     }
     printf("\nBefore Insertion :\n");
-    printf("\nTop:%d and Rear:%d%d\n",q->top,q->rear);
+    printf("\nTop:%d and Rear:%d\n",q->top,q->rear);
     //first time insertion case
     if(q->rear == -1 && q->top == -1){
         printf("\nFirst Time Insertion\n");
@@ -110,6 +110,7 @@ void init2DMatrix(int** G,int n){
 }
 
 void BFS(int** G,int s,int n){
+	printf("\nBFS is called....\n");
     //create a boolean for each node if it has been explored or not
     int* visited = (int*)malloc(sizeof(int)*n);
     for(int i = 0;i<n;i++){
@@ -117,23 +118,35 @@ void BFS(int** G,int s,int n){
     }
     //mark the strating vertex as explored
     visited[s] = True;
+    printf("\nCreating the Queue...\n");
     //Queue to store all nodes of a particular layer whose neighbours are yet to be explored
-    queue* q;
-    q->Q = (int*)malloc(sizeof(int)*n);
+    queue* q = (queue*)malloc(sizeof(queue));
+    printf("\nCreating the array.....");
+    (q->Q) = (int*)malloc(sizeof(int)*n);
+    printf("\nAssigning the top and rear variables\n");
     q->size = n;
     q->top = -1;
     q->rear = -1;
+    printf("\nInserting first element to the queue\n");
     //add the first node to the queue
     enqueue(q,s);
+    printf("\n********************\n");
+    printf("\nexplored:%d\n",s);
+    printf("\n*********************\n");
     //while there are elements with unexplored neighbours
     while(!isEmpty(*q)){
         int v = dequeue(q);
         printf("\nThe popped value is %d\n",v);
         if(v != -1){
+        	printf("\nPop successfull...\n");
             //go through all neighbours
             for(int i = 0;i<n;i++){
                 //if there exist an edge  it is unexplored
-                if(G[v][i] == True && !visited[v]){
+                printf("\nG[%d][%d] = %d and visited[%d] = %d\n",v,i,G[v][i],i,visited[i]);
+                if(G[v][i] == 1 && visited[i] == False){
+                	printf("\n********************\n");
+                	printf("\nexplored:%d\n",i);
+                	printf("\n*********************\n");
                     enqueue(q,i);
                     visited[i] = True;
                 }
