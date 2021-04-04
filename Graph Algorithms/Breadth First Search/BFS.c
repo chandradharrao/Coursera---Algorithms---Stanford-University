@@ -12,29 +12,63 @@ typedef struct q
     int rear;
 }queue;
 
+void print1DArr(int* a,int n){
+    for(int i = 0;i<n;i++){
+        printf("%d,",a[i]);
+    }
+}
+
 int isEmpty(queue q){
-    if((q.top) == -1 || (q.->top) == (q.rear)){
+    if((q.top) == -1){
+        printf("\nQueue is Empty\n");
         return True;
     }
+    printf("\nQueue isnt empty!\n");
     return False;
 }
 
 int dequeue(queue*q){
+    printf("\nBefore Deletion :\n");
+    //printf("\nTop:%d Rear:%d Q[top]:%d\n",q->top,q->rear,(q->Q)[(q->top)]);
+    printf("\nTop:%d Rear:%d\n",q->top,q->rear);
     //check for empty condition
-    if((q->top == q->rear) || (q->top == -1)){
+    if((q->top == -1)){
         printf("\nQueue empty\n");
         return -1;
     }
+    //check for one element case
+    if(q->top == q->rear){
+        printf("\nSingle Element in queue before deleting\n");
+        int res = (q->Q)[(q->top)];
+        q->top = q->rear = -1;
+        printf("\nThe value to be deleted is %d\n",res);
+        return res;
+    }
+    //if more than one element
+    printf("\nThe value to be deleted is %d\n",(q->Q)[(q->top)]);
     return (q->Q)[(q->top)++];
 }
 
-void enqueue(queue*q,int x){
+void enqueue(queue* q,int x){
+    printf("\nThe value to insert is %d\n",x);
     //check for full condition
-    if(q->rear == (q->size)-1){
+    if(q->rear == ((q->size)-1)){
         printf("\nQueue is full\n");
         return;
     }
-    (q->Q)[++(q->rear)] = x;
+    printf("\nBefore Insertion :\n");
+    printf("\nTop:%d and Rear:%d%d\n",q->top,q->rear);
+    //first time insertion case
+    if(q->rear == -1 && q->top == -1){
+        printf("\nFirst Time Insertion\n");
+        q->top = q->rear = 0;
+    }
+    else{
+        (q->rear) = (q->rear) + 1;
+    }
+    (q->Q)[(q->rear)] = x;
+    printf("\nAfter Insertion :\n");
+    printf("\nTop:%d and Rear:%d and Q[rear]:%d\n",q->top,q->rear,(q->Q)[(q->rear)]);
     return;
 }
 
@@ -66,7 +100,7 @@ int** create2DMatrix(int n){
     return G;
 }
 
-init2DMatrix(int** G,int n){
+void init2DMatrix(int** G,int n){
     for(int i =0;i<n;i++){
         for(int j = 0;j<n;j++){
             printf("\nIs there an Edge between G[%d][%d]?\n",i,j);
@@ -87,6 +121,7 @@ void BFS(int** G,int s,int n){
     //Queue to store all nodes of a particular layer whose neighbours are yet to be explored
     queue* q;
     q->Q = (int*)malloc(sizeof(int)*n);
+    q->size = n;
     q->top = -1;
     q->rear = -1;
     //add the first node to the queue
@@ -94,6 +129,7 @@ void BFS(int** G,int s,int n){
     //while there are elements with unexplored neighbours
     while(!isEmpty(*q)){
         int v = dequeue(q);
+        printf("\nThe popped value is %d\n",v);
         if(v != -1){
             //go through all neighbours
             for(int i = 0;i<n;i++){
@@ -119,5 +155,6 @@ int main(){
     printf("\nEnter the Starting Node\n");
     int s;
     scanf("%d",&s);
+    printf("\nThe starting node is %d\n",s);
     BFS(adjMatrix,s,n);
 }
