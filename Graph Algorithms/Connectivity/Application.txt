@@ -1,8 +1,11 @@
+*Time Complexity
+->Each node is "looked at" atmost once and each edge is "looked at" atmost twice.Hence if Ns is the number of nodes from the starting vertex and Ms is the number of edges from the starting vertex s,then the time complexity is : O(Ns,Ms).
+
 *We can use BFS to identify the components of a graph
 *All nodes of a connected component are of equivlence class ie
-
 ->they are symmetric because if there is a path from u to v,then
 there will be an path from v to u in undrected graph.
+
 ->they are transitive because if there is a pth from u to v and v to node w,
 then there is a path from u to node w
 ->They are reflexive because every node has a path to itself.
