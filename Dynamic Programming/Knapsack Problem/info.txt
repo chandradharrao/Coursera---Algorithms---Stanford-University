@@ -1,0 +1,10 @@
+*If there are n items,then the final bag could either have a particular item or not,hence for a particular item,its presence idn the bag is either 0 or 1.
+Hence naive algo would take O(2^n).
+
+*Using dynamic programming,we maintain a 2D matrix.
+Rows->Weight of different items in increasing order
+Columns->Weight of the bag in increasing order
+Matrix[Row][Col]->Would give the Profit
+
+*At each step we either include the item along with the previous items if theres space or else go with just the previous items.
+V[i][j] = max{P[i]+V[i-1][j-w[i]],V[i-1][j]}

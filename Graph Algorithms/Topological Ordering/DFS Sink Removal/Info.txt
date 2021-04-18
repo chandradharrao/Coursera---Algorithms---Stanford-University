@@ -1,0 +1,3 @@
+*Sink vertexes are always in the end of the topological sortbecause they have no outgoing vertexes(are not prereqisite to any other node) but have only incoming vertexes to them(have only pre requsites).
+
+*DFS on Each node will traverse till the node with no outgoing vedge.Hence it will be a sink vertex.This should be at the end of thetopological sort
