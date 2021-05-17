@@ -1,0 +1,11 @@
+.Iteratively make "myopic".irrevocable decisions and hope everything works out at the end.
+.In divide and conquer we break down the problem into smaller problems and solve them.It
+is difficult to come up with it.Also difficult to find out Time complexity of algorithms.
+.But in greedy algorithm,very difficult to prove its correctness and it is often NOT correct even though it would be intutively correct.
+
+Technique to Discover Greeedy Algorithm to any problem?
+->Focus on special Cases of the problem and see how to minimize objective function:
+Eg: for the Scheduling problem(E WjCj):
+All jobs have same lengths but diff weights
+All jobs have same weights but diff lengths.
+->Move to General Cases

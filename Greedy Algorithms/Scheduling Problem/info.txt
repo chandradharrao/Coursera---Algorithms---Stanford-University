@@ -1,0 +1,41 @@
+Scheduling of n jobs using shared reseource.
+
+Wi = Weight or importance of the job/process
+Ci = Completion time of the job/process
+Li = length of the job/process
+
+Objective function : minimize the weighted sum of completion time or sum of WjCj.
+
+Why choose greedy algorithm?
+Greedy algorithm makes ITERATIVE myopic decision to yield hopefully optimal 
+solution.
+
+Scheduling is a SEQUENCING Problem with iterative spteps.Hence we use greedy algorithm.
+Technique to Discover Greeedy Algorithm:
+->Focus on special Cases of the problem and see how to minimize objective function:
+Eg: for the Scheduling prsoblem(E WjCj):
+All jobs have same lengths but diff weights
+=>Hence more prority ones should be done earlier.
+All jobs have same weights but diff lengths.
+=>Hence shorter ones should be done earlier to prevent consquences on the later ones.
+
+->Move to General Cases:
+Ex:When jobs have high proirity and Long execution time.WHere shld they be placed?
+A:For this we need to combine the two paramters into a single "Score" and use them.
+When combining we need to note that:
+.More the weight,more the priority,hence more should be the score.
+.Less the length,less is execution time,hence more the score.
+Hence the mathematical function to find the score should take f(Lj,Wj) and 
+return a single Sj.
+The functions can use "difference" or "ratio" ie:
+*Case1:Wj/Lj and Case2:Wj-Lj.
+Atleast one of them should be right between the fighting Algorithms.
+Hence we need to rule out one of them using "Clever" inputs.
+*Using the score values,we need to calculate the objective function WjCj value.
+If W1=3 and Li=5 vs W2=1 and L2=2.For this,the scores are:
+S11 = 3-5=-2,S12 = 1-2=-1 and S21 = 5/3 and S22 = 2/1.
+*We consider the larger score for each case and compute the objective function
+for that first:
+->For the "diff" algorithm,S12 has larger score,hence we do : 1*2 + 3*(2+5) = 23
+->For the "ratio" algo,S21 has larger score,hence we do : 3*5 + 1*(5+2) = 22
+Since the "ratio" algo gives smaller input,we take that as the correct algorithm

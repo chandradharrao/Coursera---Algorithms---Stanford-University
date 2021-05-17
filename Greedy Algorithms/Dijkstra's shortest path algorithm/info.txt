@@ -1,0 +1,67 @@
+Input : Directed Graph G = <V,E>
+E - non neg edge
+s - Source vertex
+
+Output : for each vertex v belonging to V,we need to compute the shortest path
+length from s.
+
+Assumption : There would be path from s to every vertex
+
+Why another Shortest path algorithm?
+A:BFS calculates shortest path ie min number of nops hence reuires all 
+the edges to have length = 1 to get the shortest path
+
+Why not just replace each edge E of weight W with unit edges and nodes?
+A:Increase the size of the graph with unecessary nodes.Hence not scalable.
+
+Why dont we add large number to all nodes to make neg path len to pos edge len?
+A:Doesnt preserver shortest path
+Eg:s-1-v-(-5)-t and s-(-2)-t.
+Now if we add +5 to each edge,the shortest path changes
+
+X = {} set consisting of vertices processed so far
+A - [] array containing the shortest path distance
+B - [] array containg the shortest path
+V - {} set containing all the vertices of the grapgh G
+
+setup:
+X = {s} bcause we would start from vertex s initially
+A[s] = 0 bcause distance from itself is zero
+B[s] = empty
+
+main Loop:
+while X!=V:
+    .grow X until it covers entire Graph
+    .grow X by covering one node at a time
+    .pick the neighbour while processing that minimizes the greedy criterion:
+        A[v] + Lvw where
+        v beongs to set X and w belongs to set V-X and w neigh of s
+        and A[v] is the shortest path of v from s,Lvw is the path dist
+        from v to w
+    .this is done by assigning each vertex a score ie dist from s
+    .add w to X
+    .set A[w] = A[v]+Lvw
+    .set B[w] = B[v] union v ie add v to path from s to w
+
+Proof of correctness:
+.we need to prove that when ever we choose a new vertext its the 
+shortest using induction.
+.A[s] = 0 is trivially correct 
+.Inductive step:
+    For all v in X (is processed vertices) we assume that all prev iters 
+    are correct.
+    We pick w and w to X and set B[w] = B[v] union (v,w) 
+.We need to show that every other path has a distance grater than 
+or equal to A[v]+Lvw
+Proof:
+.let P be any path s to w.Let the directed path have node y through which 
+it reaches V-X set and z be the intermediate node in V-X.
+ie S---->y-->z----->w.
+.path from s to y would be the shortest path A[y] using induction,
+path from y to z is Lyz and length from z to w is >=0 because 
+path should be existant and non neg.
+Hence we have lower bound on each of three segments of the path
+ie A[y] + Lyz
+.Now using the dijkstras greedy criterion(Score):
+A[v]+Lvw <= A[y]+Lyz where A[v]+Lvw is the len of the path we came up with 
+and A[y]+Lyz is the lower bound of the decomposed general competing path.
